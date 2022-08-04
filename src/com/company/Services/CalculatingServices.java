@@ -1,11 +1,11 @@
 package com.company.Services;
 
+import com.company.Exceptions.MyCustomException;
 import com.company.Services.Messages.MessageResult;
 
 public class CalculatingServices implements Calculating {
-    private float result;
-    private int number1, number2;
-    private String action;
+    private final int number1, number2;
+    private final String action;
 
     public CalculatingServices(int number1, int number2, String action) {
         this.number1 = number1;
@@ -14,7 +14,8 @@ public class CalculatingServices implements Calculating {
     }
 
     @Override
-    public void calculate() {
+    public void calculate() throws MyCustomException {
+        float result;
         switch (action) {
             case "+":
                 result = number1 + number2;
@@ -32,8 +33,8 @@ public class CalculatingServices implements Calculating {
                 if (number2 != 0) {
                     result = (float) number1 / number2;
                     new MessageResult(result).sendMessage();
-                }else {
-                    throw new IllegalArgumentException("!!! ERROR !!! Division by zero !!!!");
+                } else {
+                    throw new ArithmeticException("!!! ERROR !!! Division by zero !!!!");
                 }
                 break;
             default:

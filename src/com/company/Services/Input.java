@@ -1,5 +1,6 @@
 package com.company.Services;
 
+import com.company.Exceptions.MyCustomException;
 import com.company.Services.Messages.Message;
 import com.company.Services.Messages.MessageNumber;
 import com.company.Services.Messages.MessageOperand;
@@ -7,34 +8,21 @@ import com.company.Services.Messages.MessageOperand;
 import java.util.Scanner;
 
 public class Input {
-    private int number, number1, number2;
+    private int number1, number2;
     private String action;
-    private Scanner scanner = new Scanner(System.in);
-    private Message messageNumber = new MessageNumber();
-    private Message messageOperand = new MessageOperand();
+    private final Scanner scanner = new Scanner(System.in);
+    private final Message messageNumber = new MessageNumber();
+    private final Message messageOperand = new MessageOperand();
 
-    public void input(){
+    public void input() throws MyCustomException {
         messageNumber.sendMessage();
-        inputNumber();
-        this.number1 = number;
+        number1 = scanner.nextInt();
 
         messageOperand.sendMessage();
-        inputOperand();
-
+        action = scanner.next();
 
         messageNumber.sendMessage();
-        inputNumber();
-        this.number2=number;
-    }
-
-    private int inputNumber(){
-      number = scanner.nextInt();
-       return number;
-       }
-
-    private String inputOperand(){
-        action = scanner.next();
-        return action;
+        number2=scanner.nextInt();
     }
 
     public int getNumber1() {
