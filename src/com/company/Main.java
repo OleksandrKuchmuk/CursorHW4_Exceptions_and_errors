@@ -11,5 +11,6 @@ public class Main {
         input.input();
         CalculatingServices calculatingServices = new CalculatingServices(input.getNumber1(), input.getNumber2(), input.getAction());
         calculatingServices.calculate();
+
     }
 }
